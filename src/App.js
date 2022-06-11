@@ -1,24 +1,38 @@
-import logo from './logo.svg';
+
+import { useState } from 'react';
 import './App.css';
+import NavBar from './components/Navbar';
+import TextForm from './components/TextForm ';
+import { BrowserRouter as Router,Routes, Route} from 'react-router-dom'
+
+
 
 function App() {
+
+  const [modes, setMode] = useState("light");
+
+  const toggleMode =()=>{
+    if(modes ==='light'){
+      setMode('dark');
+      document.body.style.backgroundColor = "rgb(20, 20, 20)";
+    }
+    else{
+      setMode('light');
+      document.body.style.backgroundColor = "#f0f0f0";
+    }
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <>
+  <Router>
+   <NavBar title = "TextUtils" about = "About" mode = {modes} toggleMode = {toggleMode}/>
+<Routes>
+  <Route exact path ="/home" element = {<TextForm heading= "Enter a text to analyze" mode = {modes}/>}/>
+  
+<Route index element = {<NavBar/>}/>
+  
+   </Routes>
+   </Router>
+   </>
   );
 }
 
