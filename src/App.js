@@ -28,7 +28,7 @@ function App() {
 <Routes>
   <Route exact path ="/home" element = {<TextForm heading= "Enter a text to analyze" mode = {modes}/>}/>
   
-<Route index element = {<NavBar/>}/>
+<Route index element = {<TextForm heading= "Enter a text to analyze" mode = {modes}/>}/>
   
    </Routes>
    </Router>
